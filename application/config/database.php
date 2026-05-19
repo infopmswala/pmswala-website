@@ -73,15 +73,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+$db_host = getenv('DB_HOST') ?: '127.0.0.1';
+$db_user = getenv('DB_USER') ?: 'pmswala_user';
+$db_pass = getenv('DB_PASS') ?: 'password123';
+$db_name = getenv('DB_NAME') ?: 'pmswala_db';
+$db_port = getenv('DB_PORT') ?: 3306;
+
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => $db_host,
 	// 'username' => 'pmswala_pmswala_pmswala_cms_new',
-	'username' => 'pmswala_user',
+	'username' => $db_user,
 	// 'password' => 'pmswala_pmswala_cms_new',
-	'password' => 'password123' ,
+	'password' => $db_pass,
 	// 'database' => 'pmswala_pmswala_cms_new',   // Ensure this database exists in phpMyAdmin if not please check and add
-	'database' => 'pmswala_db' 	,//New databse created
+	'database' => $db_name 	,//New databse created
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -94,6 +100,7 @@ $db['default'] = array(
 	'encrypt' => FALSE,
 	'compress' => FALSE,
 	'stricton' => FALSE,
+	'port' => (int) $db_port,
 	'failover' => array(),
 	'save_queries' => TRUE
 );

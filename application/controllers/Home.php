@@ -225,7 +225,7 @@ class Home extends CI_Controller {
       $this->load->view('_frontend_', $this->data);
   }
   
-  public function pages(){
+  public function pages($slug = NULL){
 		  $this->data = array(
             'title' => PAGE_LOGIN_TITLE,
             'description' => PAGE_LOGIN_DESCRIPTION,
@@ -234,12 +234,37 @@ class Home extends CI_Controller {
        $where = array("status" => "1");
        $row_array = array('row_array');
        $this->data['td_settings'] = $this->Main_model->get_data($where, "td_settings",null,null,null,null,null,$row_array);
-       
-       $where = array("status" => "1","information_title_slug"=>$this->uri->segment(1));
+
+       $slug = $slug ?: $this->uri->segment(1);
+
+       $where = array("status" => "1", "service_slug" => $slug);
        $row_array = array('row_array');
-       $this->data['td_information'] = $this->Main_model->get_data($where, "td_information",null,null,null,null,null,$row_array);
-      $this->data['_view_'] = 'frontend/privacy_view';
-      $this->load->view('_frontend_', $this->data);
+       $this->data['td_services'] = $this->Main_model->get_data($where, "td_services", null, null, null, null, null, $row_array);
+       if (!empty($this->data['td_services'])) {
+           $this->data['_view_'] = 'frontend/service_details_view';
+           $this->load->view('_frontend_', $this->data);
+           return;
+       }
+
+       $where = array("status" => "1", "slug" => $slug);
+       $row_array = array('row_array');
+       $this->data['td_blog'] = $this->Main_model->get_data($where, "td_blog", null, null, null, null, null, $row_array);
+       if (!empty($this->data['td_blog'])) {
+           $this->data['_view_'] = 'frontend/blog_details_view';
+           $this->load->view('_frontend_', $this->data);
+           return;
+       }
+
+       $where = array("status" => "1", "information_title_slug" => $slug);
+       $row_array = array('row_array');
+       $this->data['td_information'] = $this->Main_model->get_data($where, "td_information", null, null, null, null, null, $row_array);
+       if (!empty($this->data['td_information'])) {
+           $this->data['_view_'] = 'frontend/privacy_view';
+           $this->load->view('_frontend_', $this->data);
+           return;
+       }
+
+       show_404();
   }
   
    public function blog(){

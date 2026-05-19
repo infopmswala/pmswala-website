@@ -51,24 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'Frontend';
 
-require_once(BASEPATH . 'database/DB.php');
-$db =& DB();
-
-$td_blog = $db->get('td_services')->result();
-foreach($td_blog as $key => $val){
-    $route[$val->service_slug] = 'Home/service_details/$1';
-}
-
-$td_services = $db->get('td_blog')->result();
-foreach($td_services as $key => $val){
-    $route[$val->slug] = 'Home/blog_details/$1';
-}
-$td_information = $db->get('td_information')->result();
-foreach($td_information as $key => $val){
-    $route[$val->information_title_slug] = 'Home/pages/$1';
-}
-
-
 $route['about-us'] = 'Frontend/about';
 $route['product'] = 'Frontend/invest';
 $route['plans'] = 'Frontend/plans';
@@ -77,6 +59,9 @@ $route['contact-us/thank-you'] = 'Frontend/thank_you';
 $route['blog'] = 'Frontend/blog';
 $route['Services'] = 'Frontend/services';
 $route['home/save'] = 'Home/save';
+
+// Resolve legacy one-segment slugs in controller to avoid DB access during bootstrap.
+$route['(:any)'] = 'Home/pages/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -2,7 +2,4 @@ PMSWALA.zip
 pmswala (1).zip
 
 # Next.js fullstack migration app
-next-app/node_modules/
-next-app/.next/
-next-app/.env.local
-next-app/.turbo/
+/next-app

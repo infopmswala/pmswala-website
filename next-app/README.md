@@ -68,3 +68,8 @@ Single-project Next.js fullstack foundation for PMSWALA migration.
 ## Migration script
 - Dry run: `npm run migrate:dry`
 - Run mode: `npm run migrate:run`
+
+## SQL dump import
+- Dry run: `npm run import:pmswala -- --dry-run`
+- Import into Mongo: `npm run import:pmswala -- --uri=mongodb://127.0.0.1:27017 --db=pmswala --drop`
+- Default SQL source: `../../pmswala.sql`

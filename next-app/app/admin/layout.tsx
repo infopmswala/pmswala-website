@@ -12,9 +12,9 @@ const adminItems = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <div className="app-shell">
       <ShellNav title="PMSWALA Admin" items={adminItems} />
       {children}
-    </>
+    </div>
   );
 }

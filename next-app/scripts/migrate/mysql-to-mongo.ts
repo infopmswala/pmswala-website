@@ -100,6 +100,8 @@ async function main() {
           phone: String(row.phone || ""),
           // Keep legacy hash temporarily. Force-reset flow will replace it with bcrypt/argon2.
           passwordHash: String(row.password || ""),
+          role: "user",
+          passwordResetRequired: true,
           status: String(row.status || "1") === "1" ? "active" : "inactive",
           kycStatus: String(row.kyc_status || "pending")
         }

@@ -8,6 +8,8 @@ const UserSchema = new Schema(
     email: { type: String, trim: true, lowercase: true, index: true },
     phone: { type: String, trim: true, index: true, required: true },
     passwordHash: { type: String, required: true },
+    role: { type: String, enum: ["admin", "user"], default: "user" },
+    passwordResetRequired: { type: Boolean, default: true },
     status: { type: String, enum: ["active", "inactive"], default: "active" },
     kycStatus: { type: String, default: "pending" }
   },

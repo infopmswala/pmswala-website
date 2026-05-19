@@ -4,6 +4,9 @@ import mysql from "mysql2/promise";
 import { connectMongo } from "../../lib/mongodb";
 import { UserModel } from "../../models/User";
 import { PageModel } from "../../models/Page";
+import { PortfolioModel } from "../../models/Portfolio";
+import { PaymentTransactionModel } from "../../models/PaymentTransaction";
+import { WithdrawalRequestModel } from "../../models/WithdrawalRequest";
 
 const isDryRun = process.argv.includes("--dry-run");
 const isRun = process.argv.includes("--run");
@@ -48,17 +51,35 @@ async function main() {
     "SELECT id, information_title AS title, information_title_slug AS slug, information_description AS contentHtml, status FROM td_information"
   );
 
+  const [portfolios] = await sql.query(
+    "SELECT id, title, slug, short_description AS summary, description, minimum_investment AS minInvestment, expected_return AS expectedReturn, status FROM td_portfolio"
+  );
+
+  const [paymentTransactions] = await sql.query(
+    "SELECT id, user_id, purchase, amount, period, interest, maturity_date, payment_status, created_at, updated_at FROM td_payment_transactions"
+  );
+
+  const [withdrawals] = await sql.query(
+    "SELECT id, user_id, payment_id, amount, status, message, created_at, updated_at FROM td_withdrawal_request"
+  );
+
   await sql.end();
 
   const usersRows = users as Array<Record<string, unknown>>;
   const servicesRows = services as Array<Record<string, unknown>>;
   const blogRows = blogs as Array<Record<string, unknown>>;
   const infoRows = informationPages as Array<Record<string, unknown>>;
+  const portfolioRows = portfolios as Array<Record<string, unknown>>;
+  const txRows = paymentTransactions as Array<Record<string, unknown>>;
+  const withdrawalRows = withdrawals as Array<Record<string, unknown>>;
 
   console.log(`Fetched users: ${usersRows.length}`);
   console.log(`Fetched services: ${servicesRows.length}`);
   console.log(`Fetched blogs: ${blogRows.length}`);
   console.log(`Fetched info pages: ${infoRows.length}`);
+  console.log(`Fetched portfolios: ${portfolioRows.length}`);
+  console.log(`Fetched payment transactions: ${txRows.length}`);
+  console.log(`Fetched withdrawal requests: ${withdrawalRows.length}`);
 
   if (isDryRun) {
     console.log("Dry run completed. No Mongo writes executed.");
@@ -162,8 +183,120 @@ async function main() {
     await PageModel.bulkWrite(pageOps);
   }
 
+  const seenPortfolioSlugs = new Set<string>();
+  const portfolioOps = portfolioRows.map((row) => {
+    let slug = String(row.slug || "").trim().toLowerCase();
+    if (!slug) slug = `portfolio-${row.id}`;
+    if (seenPortfolioSlugs.has(slug)) slug = `${slug}-${row.id}`;
+    seenPortfolioSlugs.add(slug);
+
+    return {
+      updateOne: {
+        filter: { legacyId: Number(row.id) },
+        update: {
+          $set: {
+            legacyId: Number(row.id),
+            title: String(row.title || ""),
+            slug,
+            summary: String(row.summary || ""),
+            description: String(row.description || ""),
+            minInvestment: Number(row.minInvestment || 0),
+            expectedReturn: Number(row.expectedReturn || 0),
+            status: String(row.status || "1") === "1" ? "active" : "inactive"
+          }
+        },
+        upsert: true
+      }
+    };
+  });
+
+  if (portfolioOps.length) {
+    await PortfolioModel.bulkWrite(portfolioOps);
+  }
+
+  const portfolioMap = new Map<number, { title: string; slug: string; minInvestment: number }>();
+  for (const row of portfolioRows) {
+    portfolioMap.set(Number(row.id), {
+      title: String(row.title || ""),
+      slug: String(row.slug || ""),
+      minInvestment: Number(row.minInvestment || 0)
+    });
+  }
+
+  const txOps = txRows.map((row) => {
+    const portfolioId = Number(row.purchase || 0);
+    const snap = portfolioMap.get(portfolioId) || { title: "", slug: "", minInvestment: 0 };
+    const rawStatus = String(row.payment_status || "").toLowerCase();
+    const paymentStatus = rawStatus === "1" || rawStatus === "success" || rawStatus === "completed"
+      ? "completed"
+      : rawStatus === "2" || rawStatus === "failed"
+        ? "failed"
+        : "pending";
+
+    return {
+      updateOne: {
+        filter: { legacyId: Number(row.id) },
+        update: {
+          $set: {
+            legacyId: Number(row.id),
+            legacyUserId: Number(row.user_id || 0),
+            legacyPortfolioId: portfolioId,
+            amount: Number(row.amount || 0),
+            period: String(row.period || ""),
+            interest: Number(row.interest || 0),
+            maturityDate: row.maturity_date ? new Date(String(row.maturity_date)) : undefined,
+            paymentStatus,
+            portfolioSnapshot: snap,
+            createdAt: row.created_at ? new Date(String(row.created_at)) : undefined,
+            updatedAt: row.updated_at ? new Date(String(row.updated_at)) : undefined
+          }
+        },
+        upsert: true
+      }
+    };
+  });
+
+  if (txOps.length) {
+    await PaymentTransactionModel.bulkWrite(txOps);
+  }
+
+  const withdrawalOps = withdrawalRows.map((row) => {
+    const rawStatus = String(row.status || "").toLowerCase();
+    const status = rawStatus === "1" || rawStatus === "approved"
+      ? "approved"
+      : rawStatus === "2" || rawStatus === "rejected"
+        ? "rejected"
+        : "pending";
+
+    return {
+      updateOne: {
+        filter: { legacyId: Number(row.id) },
+        update: {
+          $set: {
+            legacyId: Number(row.id),
+            legacyUserId: Number(row.user_id || 0),
+            legacyPaymentId: Number(row.payment_id || 0),
+            amount: Number(row.amount || 0),
+            status,
+            message: String(row.message || ""),
+            createdAt: row.created_at ? new Date(String(row.created_at)) : undefined,
+            updatedAt: row.updated_at ? new Date(String(row.updated_at)) : undefined
+          }
+        },
+        upsert: true
+      }
+    };
+  });
+
+  if (withdrawalOps.length) {
+    await WithdrawalRequestModel.bulkWrite(withdrawalOps);
+  }
+
   console.log(`Upserted users: ${userOps.length}`);
   console.log(`Upserted pages: ${pageOps.length}`);
+  console.log(`Upserted portfolios: ${portfolioOps.length}`);
+  console.log(`Upserted payment transactions: ${txOps.length}`);
+  console.log(`Upserted withdrawal requests: ${withdrawalOps.length}`);
 
   console.log("Migration completed successfully.");
 }

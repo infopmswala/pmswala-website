@@ -1,17 +1,17 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { connectMongo } from "@/lib/mongodb";
-import { PageModel } from "@/models/Page";
+import { PaymentTransactionModel } from "@/models/PaymentTransaction";
 
 const QuerySchema = z.object({
-  source: z.enum(["service", "blog", "information"]).optional(),
+  legacyUserId: z.coerce.number().int().positive(),
   limit: z.coerce.number().int().min(1).max(100).default(20)
 });
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const parsed = QuerySchema.safeParse({
-    source: url.searchParams.get("source") ?? undefined,
+    legacyUserId: url.searchParams.get("legacyUserId"),
     limit: url.searchParams.get("limit") ?? undefined
   });
 
@@ -20,18 +20,10 @@ export async function GET(request: Request) {
   }
 
   await connectMongo();
-  const filter: Record<string, unknown> = { status: "active" };
-  if (parsed.data.source) {
-    filter.source = parsed.data.source;
-  }
-
-  const items = await PageModel.find(filter)
-    .sort({ updatedAt: -1, createdAt: -1 })
+  const items = await PaymentTransactionModel.find({ legacyUserId: parsed.data.legacyUserId })
+    .sort({ createdAt: -1 })
     .limit(parsed.data.limit)
-    .select("source title slug summary image createdAt")
     .lean();
 
-  return NextResponse.json({
-    items
-  });
+  return NextResponse.json({ items });
 }

@@ -55,16 +55,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.28",
+            "version": "5.7.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "04e30e7f60668cf634e2e0fbf1c9f3e2ce1a74f0"
+                "reference": "c77a1def3e7aaf2813f48eaa0a9e7ca9a4c8c5d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/04e30e7f60668cf634e2e0fbf1c9f3e2ce1a74f0",
-                "reference": "04e30e7f60668cf634e2e0fbf1c9f3e2ce1a74f0",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c77a1def3e7aaf2813f48eaa0a9e7ca9a4c8c5d5",
+                "reference": "c77a1def3e7aaf2813f48eaa0a9e7ca9a4c8c5d5",
                 "shasum": ""
             },
             "require": {
@@ -75,38 +75,13 @@
                 "ext-mbstring": "*",
                 "ext-xml": "*",
                 "ext-xmlwriter": "*",
-                "php": ">=7.3",
-                "phar-io/manifest": "^2.0.3",
-                "phar-io/version": "^3.0.2",
-                "phpunit/php-code-coverage": "^9.2.13",
-                "phpunit/php-file-iterator": "^3.0.5",
-                "phpunit/php-invoker": "^3.1.1",
-                "phpunit/php-text-template": "^2.0.3",
-                "phpunit/php-timer": "^5.0.2",
-                "sebastian/cli-parser": "^1.0.2",
-                "sebastian/code-unit": "^1.0.6",
-                "sebastian/comparator": "^4.0.8",
-                "sebastian/diff": "^4.0.3",
-                "sebastian/environment": "^5.1.3",
-                "sebastian/exporter": "^4.0.5",
-                "sebastian/global-state": "^5.0.3",
-                "sebastian/object-enumerator": "^4.0.3",
-                "sebastian/resource-operations": "^3.0.3",
-                "sebastian/type": "^2.3.4",
-                "sebastian/version": "^3.0.2"
-            },
-            "suggest": {
-                "ext-soap": "*",
-                "ext-xdebug": "*"
+                "php": ">=5.6"
             },
             "bin": [
                 "phpunit"
             ],
             "type": "library",
             "autoload": {
-                "files": [
-                    "src/autoload.php"
-                ],
                 "classmap": [
                     "src/"
                 ]
@@ -133,14 +108,8 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "source": "https://github.com/sebastianbergmann/phpunit"
-            },
-            "funding": [
-                {
-                    "url": "https://phpunit.de/donate.html",
-                    "type": "custom"
-                }
             ],
-            "time": "2023-12-01T07:44:57+00:00"
+            "time": "2018-02-01T05:57:39+00:00"
         }
     ],
     "aliases": [],
@@ -151,5 +120,6 @@
     "platform": {
         "php": ">=5.3.7"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

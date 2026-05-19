@@ -24,8 +24,9 @@ function diffIds(sqlIds: number[], mongoIds: number[]) {
 }
 
 async function getSqlIds(sql: mysql.Connection, query: string, field = "id") {
-  const [rows] = await sql.query<Array<Record<string, unknown>>>(query);
-  return rows.map((r) => Number(r[field] || 0)).filter((v) => Number.isFinite(v) && v > 0);
+  const [rows] = await sql.query(query);
+  const normalizedRows = rows as Array<Record<string, unknown>>;
+  return normalizedRows.map((r) => Number(r[field] || 0)).filter((v) => Number.isFinite(v) && v > 0);
 }
 
 export async function GET() {

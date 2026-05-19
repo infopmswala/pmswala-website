@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const rawMongoUri = process.env.MONGODB_URI;
 
-if (!MONGODB_URI) {
+if (!rawMongoUri) {
   throw new Error("Missing MONGODB_URI environment variable");
 }
+
+const MONGODB_URI: string = rawMongoUri;
 
 type MongooseCache = {
   conn: typeof mongoose | null;

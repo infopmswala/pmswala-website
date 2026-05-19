@@ -9,6 +9,12 @@ import { WithdrawalRequestModel } from "@/models/WithdrawalRequest";
 
 type CountRow = { total: number };
 
+async function getCount(sql: mysql.Connection, query: string) {
+  const [rows] = await sql.query(query);
+  const first = (rows as CountRow[])[0];
+  return Number(first?.total || 0);
+}
+
 export async function GET() {
   const mysqlHost = process.env.LEGACY_MYSQL_HOST || "127.0.0.1";
   const mysqlPort = Number(process.env.LEGACY_MYSQL_PORT || "3306");
@@ -24,13 +30,13 @@ export async function GET() {
     database: mysqlDatabase
   });
 
-  const [[usersSql]] = await sql.query<CountRow[]>("SELECT COUNT(*) AS total FROM td_users");
-  const [[servicesSql]] = await sql.query<CountRow[]>("SELECT COUNT(*) AS total FROM td_services");
-  const [[blogsSql]] = await sql.query<CountRow[]>("SELECT COUNT(*) AS total FROM td_blog");
-  const [[informationSql]] = await sql.query<CountRow[]>("SELECT COUNT(*) AS total FROM td_information");
-  const [[portfolioSql]] = await sql.query<CountRow[]>("SELECT COUNT(*) AS total FROM td_portfolio");
-  const [[txSql]] = await sql.query<CountRow[]>("SELECT COUNT(*) AS total FROM td_payment_transactions");
-  const [[withdrawalsSql]] = await sql.query<CountRow[]>("SELECT COUNT(*) AS total FROM td_withdrawal_request");
+  const usersSql = await getCount(sql, "SELECT COUNT(*) AS total FROM td_users");
+  const servicesSql = await getCount(sql, "SELECT COUNT(*) AS total FROM td_services");
+  const blogsSql = await getCount(sql, "SELECT COUNT(*) AS total FROM td_blog");
+  const informationSql = await getCount(sql, "SELECT COUNT(*) AS total FROM td_information");
+  const portfolioSql = await getCount(sql, "SELECT COUNT(*) AS total FROM td_portfolio");
+  const txSql = await getCount(sql, "SELECT COUNT(*) AS total FROM td_payment_transactions");
+  const withdrawalsSql = await getCount(sql, "SELECT COUNT(*) AS total FROM td_withdrawal_request");
 
   await sql.end();
   await connectMongo();
@@ -56,22 +62,22 @@ export async function GET() {
   ]);
 
   const checks = [
-    { entity: "users", mysql: usersSql.total, mongo: usersMongo },
+    { entity: "users", mysql: usersSql, mongo: usersMongo },
     {
       entity: "pages_total",
-      mysql: servicesSql.total + blogsSql.total + informationSql.total,
+      mysql: servicesSql + blogsSql + informationSql,
       mongo: pagesMongo
     },
-    { entity: "pages_service", mysql: servicesSql.total, mongo: pagesServiceMongo },
-    { entity: "pages_blog", mysql: blogsSql.total, mongo: pagesBlogMongo },
+    { entity: "pages_service", mysql: servicesSql, mongo: pagesServiceMongo },
+    { entity: "pages_blog", mysql: blogsSql, mongo: pagesBlogMongo },
     {
       entity: "pages_information",
-      mysql: informationSql.total,
+      mysql: informationSql,
       mongo: pagesInformationMongo
     },
-    { entity: "portfolios", mysql: portfolioSql.total, mongo: portfolioMongo },
-    { entity: "payment_transactions", mysql: txSql.total, mongo: txMongo },
-    { entity: "withdrawal_requests", mysql: withdrawalsSql.total, mongo: withdrawalsMongo }
+    { entity: "portfolios", mysql: portfolioSql, mongo: portfolioMongo },
+    { entity: "payment_transactions", mysql: txSql, mongo: txMongo },
+    { entity: "withdrawal_requests", mysql: withdrawalsSql, mongo: withdrawalsMongo }
   ].map((item) => ({
     ...item,
     delta: item.mongo - item.mysql,

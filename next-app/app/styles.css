@@ -13,3 +13,54 @@ body {
 a {
   color: inherit;
 }
+
+.container {
+  max-width: 1000px;
+  margin: 32px auto;
+  padding: 0 16px;
+  font-family: Segoe UI, sans-serif;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.form input,
+.form textarea,
+.form select,
+.form button,
+.row button {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.form button,
+.row button {
+  cursor: pointer;
+  background: #111827;
+  color: #fff;
+  border-color: #111827;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}

@@ -30,6 +30,19 @@ Single-project Next.js fullstack foundation for PMSWALA migration.
 	- `PATCH/DELETE /api/admin/pages/[id]`
 - Migration verification
 	- `GET /api/migration/parity`
+	- `GET /api/migration/run`
+	- `POST /api/migration/run`
+
+## Implemented UI routes
+- `/auth/login`
+- `/auth/reset-password`
+- `/admin`
+- `/admin/users`
+- `/admin/withdrawals`
+- `/admin/pages`
+- `/admin/migration`
+- `/user/dashboard`
+- `/user/transactions`
 
 ## Quick start
 1. Copy `.env.example` to `.env.local` and set values.

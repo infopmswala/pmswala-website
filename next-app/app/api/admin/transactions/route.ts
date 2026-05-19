@@ -7,6 +7,7 @@ import { PaymentTransactionModel } from "@/models/PaymentTransaction";
 const QuerySchema = z.object({
   legacyUserId: z.coerce.number().int().positive().optional(),
   status: z.enum(["pending", "completed", "failed"]).optional(),
+  page: z.coerce.number().int().min(1).default(1),
   limit: z.coerce.number().int().min(1).max(200).default(50)
 });
 
@@ -23,6 +24,7 @@ export async function GET(request: Request) {
   const parsed = QuerySchema.safeParse({
     legacyUserId: url.searchParams.get("legacyUserId") ?? undefined,
     status: url.searchParams.get("status") ?? undefined,
+    page: url.searchParams.get("page") ?? undefined,
     limit: url.searchParams.get("limit") ?? undefined
   });
 
@@ -36,12 +38,26 @@ export async function GET(request: Request) {
   if (parsed.data.legacyUserId) filter.legacyUserId = parsed.data.legacyUserId;
   if (parsed.data.status) filter.paymentStatus = parsed.data.status;
 
-  const items = await PaymentTransactionModel.find(filter)
-    .sort({ createdAt: -1 })
-    .limit(parsed.data.limit)
-    .lean();
+  const skip = (parsed.data.page - 1) * parsed.data.limit;
 
-  return NextResponse.json({ items });
+  const [items, total] = await Promise.all([
+    PaymentTransactionModel.find(filter)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(parsed.data.limit)
+      .lean(),
+    PaymentTransactionModel.countDocuments(filter)
+  ]);
+
+  return NextResponse.json({
+    items,
+    pagination: {
+      page: parsed.data.page,
+      limit: parsed.data.limit,
+      total,
+      pages: Math.ceil(total / parsed.data.limit)
+    }
+  });
 }
 
 export async function PATCH(request: Request) {

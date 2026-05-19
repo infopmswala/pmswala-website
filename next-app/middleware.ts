@@ -9,6 +9,16 @@ function redirectToLogin(req: NextRequest) {
   return NextResponse.redirect(loginUrl);
 }
 
+function forbiddenResponse(req: NextRequest) {
+  if (req.nextUrl.pathname.startsWith("/api/")) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  const loginUrl = new URL("/auth/login", req.url);
+  loginUrl.searchParams.set("reason", "forbidden");
+  return NextResponse.redirect(loginUrl);
+}
+
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
@@ -28,11 +38,11 @@ export async function middleware(req: NextRequest) {
     const auth = await verifyAccessTokenEdge(token);
 
     if (needsAdmin && auth.role !== "admin") {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      return forbiddenResponse(req);
     }
 
     if (needsUser && auth.role !== "user" && auth.role !== "admin") {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      return forbiddenResponse(req);
     }
 
     return NextResponse.next();

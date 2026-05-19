@@ -24,6 +24,7 @@ Single-project Next.js fullstack foundation for PMSWALA migration.
 - User
 	- `GET /api/user/transactions?legacyUserId=...`
 - Admin (requires admin auth cookie)
+	- `GET /api/admin/metrics`
 	- `GET /api/admin/users`
 	- `GET/PATCH /api/admin/withdrawals`
 	- `GET/POST /api/admin/pages`
@@ -49,6 +50,14 @@ Single-project Next.js fullstack foundation for PMSWALA migration.
 - `/admin/migration`
 - `/user/dashboard`
 - `/user/transactions`
+
+## Recent additions
+- Role-aware shell navigation for `/admin/*` and `/user/*`
+- Admin dashboard KPI cards backed by `/api/admin/metrics`
+- Admin list pages support pagination and filters:
+	- Users: search + paging
+	- Transactions: `legacyUserId`, `status`, paging
+	- Withdrawals: `legacyUserId`, `status`, paging
 
 ## Quick start
 1. Copy `.env.example` to `.env.local` and set values.

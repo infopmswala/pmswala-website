@@ -28,10 +28,14 @@ Single-project Next.js fullstack foundation for PMSWALA migration.
 	- `GET/PATCH /api/admin/withdrawals`
 	- `GET/POST /api/admin/pages`
 	- `PATCH/DELETE /api/admin/pages/[id]`
+	- `GET/POST /api/admin/portfolios`
+	- `PATCH/DELETE /api/admin/portfolios/[id]`
+	- `GET/PATCH /api/admin/transactions`
 - Migration verification
 	- `GET /api/migration/parity`
 	- `GET /api/migration/run`
 	- `POST /api/migration/run`
+	- `GET /api/migration/mismatches`
 
 ## Implemented UI routes
 - `/auth/login`
@@ -40,6 +44,8 @@ Single-project Next.js fullstack foundation for PMSWALA migration.
 - `/admin/users`
 - `/admin/withdrawals`
 - `/admin/pages`
+- `/admin/portfolios`
+- `/admin/transactions`
 - `/admin/migration`
 - `/user/dashboard`
 - `/user/transactions`

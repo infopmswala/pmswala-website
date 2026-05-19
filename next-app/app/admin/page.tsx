@@ -9,6 +9,8 @@ export default function AdminHomePage() {
         <li><Link href="/admin/users">Users</Link></li>
         <li><Link href="/admin/withdrawals">Withdrawals</Link></li>
         <li><Link href="/admin/pages">Pages</Link></li>
+        <li><Link href="/admin/portfolios">Portfolios</Link></li>
+        <li><Link href="/admin/transactions">Transactions</Link></li>
         <li><Link href="/admin/migration">Migration Runner</Link></li>
       </ul>
     </main>

@@ -24,6 +24,17 @@ export default function MigrationToolsPage() {
     setReports(data.items || []);
   }
 
+  async function openMismatchReport() {
+    const res = await fetch("/api/migration/mismatches");
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      setStatus(data.error || "Failed to fetch mismatch report.");
+      return;
+    }
+
+    setStatus(JSON.stringify(data.report, null, 2));
+  }
+
   useEffect(() => {
     loadReports().catch(() => setStatus("Unable to load migration reports."));
   }, []);
@@ -53,6 +64,7 @@ export default function MigrationToolsPage() {
       <div className="row">
         <button onClick={() => run("dry-run")}>Run Dry-Run</button>
         <button onClick={() => run("run")}>Run Full Migration</button>
+        <button onClick={openMismatchReport}>Show Mismatch Report</button>
       </div>
       {status ? <p>{status}</p> : null}
 

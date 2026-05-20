@@ -1,5 +1,15 @@
 PMSWALA.zip
 pmswala (1).zip
 
-# Next.js fullstack migration app
-/next-app
+# Environment files
+.env
+next-app/.env
+next-app/.env.local
+
+# Dependencies and build output
+next-app/node_modules/
+next-app/.next/
+next-app/tsconfig.tsbuildinfo
+
+# Misc
+.DS_Store

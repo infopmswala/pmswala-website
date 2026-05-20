@@ -7,28 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit",
-    "import:pmswala": "tsx scripts/import-pmswala-sql.ts",
-    "migrate:dry": "tsx scripts/migrate/mysql-to-mongo.ts --dry-run",
-    "migrate:run": "tsx scripts/migrate/mysql-to-mongo.ts --run"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^17.4.2",
-    "jose": "^5.6.3",
-    "mongodb": "^6.21.0",
-    "mongoose": "^8.4.1",
-    "mysql2": "^3.10.0",
     "next": "14.2.4",
     "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "zod": "^3.23.8"
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "tsx": "^4.15.7",
     "typescript": "^5.5.2"
   }
 }

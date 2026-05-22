@@ -184,7 +184,7 @@ export default function HomePage() {
             <a href="#testimonials">Testimonials</a>
             <a href="#contact">Contact</a>
           </nav>
-          <a href="#contact" className="landing-cta">Get Started</a>
+          <a href="https://pmswala-client.web.app/" className="landing-cta" target="_blank" rel="noreferrer">Invest Now</a>
         </div>
       </header>
 

@@ -9,6 +9,8 @@ next-app/.env.local
 # Dependencies and build output
 next-app/node_modules/
 next-app/.next/
+next-app/out/
+next-app/.firebase/
 next-app/tsconfig.tsbuildinfo
 
 # Misc

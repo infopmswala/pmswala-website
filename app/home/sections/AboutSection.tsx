@@ -1,24 +1,22 @@
-import { AboutTimelineItem } from "../content";
+import { AboutContent, AboutTimelineItem } from "../content";
 
 type AboutSectionProps = {
   brandName: string;
+  aboutContent: AboutContent;
   aboutTimeline: AboutTimelineItem[];
 };
 
-export function AboutSection({ brandName, aboutTimeline }: AboutSectionProps) {
+export function AboutSection({ brandName, aboutContent, aboutTimeline }: AboutSectionProps) {
   return (
     <section id="about" className="neo-section neo-about section-reveal">
       <div className="container neo-about-grid">
         <div>
           <div className="neo-section-head">
             <p className="neo-kicker">About {brandName}</p>
-            <h2>From advisory roots to EV-tech execution leadership</h2>
+            <h2>{aboutContent.title}</h2>
           </div>
-          <p className="neo-muted-copy">
-            We combine startup speed with institutional clarity. The mission is simple: help clients make sharper
-            infrastructure and capital decisions with confidence, transparency, and long-term value.
-          </p>
-          <img src="/assets/frontend/img/about.jpg" alt="Strategy discussion" className="neo-about-image" />
+          <p className="neo-muted-copy">{aboutContent.description}</p>
+          <img src={aboutContent.image} alt={aboutContent.imageAlt} className="neo-about-image" />
         </div>
 
         <div className="neo-timeline">

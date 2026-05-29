@@ -2,14 +2,24 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import {
+  aboutContent,
   aboutTimeline,
   brandName,
+  contactContent,
+  featuresContent,
   featureCards,
+  footerContent,
+  headerContent,
+  heroContent,
   heroStats,
   navLinks,
+  plansContent,
   plans,
+  roadmapContent,
   roadmap,
+  servicesContent,
   services,
+  testimonialsContent,
   testimonials
 } from "./home/content";
 import { AboutSection } from "./home/sections/AboutSection";
@@ -69,26 +79,29 @@ export default function HomePage() {
 
       <HeaderSection
         brandName={brandName}
+        headerContent={headerContent}
         navLinks={navLinks}
         activeSection={activeSection}
         mobileOpen={mobileOpen}
         onToggleMobile={() => setMobileOpen((open) => !open)}
         onCloseMobile={() => setMobileOpen(false)}
       />
-      <HeroSection heroStats={heroStats} />
-      <FeaturesSection featureCards={featureCards} />
-      <AboutSection brandName={brandName} aboutTimeline={aboutTimeline} />
-      <ServicesSection services={services} />
-      <PlansSection plans={plans} />
-      <RoadmapSection roadmap={roadmap} />
+      <HeroSection heroStats={heroStats} heroContent={heroContent} />
+      <FeaturesSection featureCards={featureCards} featuresContent={featuresContent} />
+      <AboutSection brandName={brandName} aboutContent={aboutContent} aboutTimeline={aboutTimeline} />
+      <ServicesSection servicesContent={servicesContent} services={services} />
+      <PlansSection plansContent={plansContent} plans={plans} />
+      <RoadmapSection roadmapContent={roadmapContent} roadmap={roadmap} />
       <TestimonialsSection
+        testimonialsContent={testimonialsContent}
         testimonials={testimonials}
         testimonialIndex={testimonialIndex}
+        onSelect={setTestimonialIndex}
         onPrev={() => setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
         onNext={() => setTestimonialIndex((prev) => (prev + 1) % testimonials.length)}
       />
-      <ContactSection enquirySent={enquirySent} onSubmit={handleEnquirySubmit} />
-      <FooterSection brandName={brandName} />
+      <ContactSection contactContent={contactContent} enquirySent={enquirySent} onSubmit={handleEnquirySubmit} />
+      <FooterSection brandName={brandName} footerContent={footerContent} />
     </main>
   );
 }

@@ -1,23 +1,21 @@
-import { RoadmapItem } from "../content";
+import { RoadmapContent, RoadmapItem } from "../content";
 
 type RoadmapSectionProps = {
+  roadmapContent: RoadmapContent;
   roadmap: RoadmapItem[];
 };
 
-export function RoadmapSection({ roadmap }: RoadmapSectionProps) {
+export function RoadmapSection({ roadmapContent, roadmap }: RoadmapSectionProps) {
   return (
     <section id="roadmap" className="neo-section neo-roadmap section-reveal">
       <div className="container">
         <div className="neo-section-head neo-roadmap-head">
-          <p className="neo-kicker">Roadmap</p>
-          <h2>What we built over the last five years</h2>
-          <p>
-            A clear growth path showing how PMSWALA moved from advisory foundations to a more
-            complete execution, assets, and EV strategy platform.
-          </p>
+          <p className="neo-kicker">{roadmapContent.kicker}</p>
+          <h2>{roadmapContent.title}</h2>
+          <p>{roadmapContent.description}</p>
         </div>
 
-        <div className="neo-roadmap-board" aria-label="PMSWALA growth path roadmap">
+        <div className="neo-roadmap-board" aria-label={roadmapContent.ariaLabel}>
           {roadmap.map((item, index) => (
             <article
               key={item.year}

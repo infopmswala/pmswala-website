@@ -1,7 +1,8 @@
-import { NavLink } from "../content";
+import { HeaderContent, NavLink } from "../content";
 
 type HeaderSectionProps = {
   brandName: string;
+  headerContent: HeaderContent;
   navLinks: NavLink[];
   activeSection: string;
   mobileOpen: boolean;
@@ -11,6 +12,7 @@ type HeaderSectionProps = {
 
 export function HeaderSection({
   brandName,
+  headerContent,
   navLinks,
   activeSection,
   mobileOpen,
@@ -20,12 +22,12 @@ export function HeaderSection({
   return (
     <header className="neo-header">
       <div className="container neo-header-row">
-        <a href="#home" className="neo-logo">
-          <img src="/assets/frontend/img/logo/logo.png" alt={brandName} />
+        <a href={headerContent.homeHref} className="neo-logo">
+          <img src={headerContent.logoImage} alt={brandName} />
           <span>{brandName}</span>
         </a>
 
-        <nav className={`neo-nav ${mobileOpen ? "open" : ""}`} aria-label="Main navigation">
+        <nav className={`neo-nav ${mobileOpen ? "open" : ""}`} aria-label={headerContent.navAriaLabel}>
           {navLinks.map((item) => (
             <a
               key={item.id}
@@ -39,12 +41,12 @@ export function HeaderSection({
         </nav>
 
         <div className="neo-header-cta-wrap">
-          <a href="https://pmswalaweb.firebaseapp.com/" className="neo-btn neo-btn-primary">Invest Now</a>
+          <a href={headerContent.ctaHref} className="neo-btn neo-btn-primary">{headerContent.ctaLabel}</a>
           <button
             type="button"
             className="neo-menu-btn"
             onClick={onToggleMobile}
-            aria-label="Toggle navigation"
+            aria-label={headerContent.menuAriaLabel}
             aria-expanded={mobileOpen}
           >
             <span />

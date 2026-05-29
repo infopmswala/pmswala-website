@@ -1,16 +1,17 @@
-import { FeatureCard } from "../content";
+import { FeatureCard, SectionHeadingContent } from "../content";
 
 type FeaturesSectionProps = {
   featureCards: FeatureCard[];
+  featuresContent: SectionHeadingContent;
 };
 
-export function FeaturesSection({ featureCards }: FeaturesSectionProps) {
+export function FeaturesSection({ featureCards, featuresContent }: FeaturesSectionProps) {
   return (
     <section id="features" className="neo-section section-reveal">
       <div className="container">
         <div className="neo-section-head">
-          <p className="neo-kicker">Platform Features</p>
-          <h2>Built for EV-tech startups and serious investors</h2>
+          <p className="neo-kicker">{featuresContent.kicker}</p>
+          <h2>{featuresContent.title}</h2>
         </div>
 
         <div className="neo-feature-bento">

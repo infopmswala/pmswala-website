@@ -51,6 +51,108 @@ export type Testimonial = {
   role: string;
 };
 
+export type LinkItem = {
+  label: string;
+  href: string;
+};
+
+export type HeroContent = {
+  kicker: string;
+  title: string;
+  description: string;
+  primaryCta: LinkItem;
+  secondaryCta: LinkItem;
+  panelImage: string;
+  panelImageAlt: string;
+  panelTitle: string;
+  panelDescription: string;
+  panelTags: string[];
+};
+
+export type SectionHeadingContent = {
+  kicker: string;
+  title: string;
+};
+
+export type AboutContent = {
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+};
+
+export type ServicesContent = SectionHeadingContent & {
+  cardCtaLabel: string;
+};
+
+export type PlansContent = SectionHeadingContent & {
+  recommendedLabel: string;
+  cardCtaLabel: string;
+};
+
+export type RoadmapContent = SectionHeadingContent & {
+  description: string;
+  ariaLabel: string;
+};
+
+export type TestimonialsContent = SectionHeadingContent & {
+  prevLabel: string;
+  nextLabel: string;
+};
+
+export type ContactServiceOption = {
+  value: string;
+  label: string;
+};
+
+export type ContactContent = SectionHeadingContent & {
+  description: string;
+  mapImage: string;
+  mapImageAlt: string;
+  nameLabel: string;
+  namePlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  serviceLabel: string;
+  servicePlaceholder: string;
+  serviceOptions: ContactServiceOption[];
+  messageLabel: string;
+  messagePlaceholder: string;
+  submitLabel: string;
+  successMessage: string;
+};
+
+export type HeaderContent = {
+  logoImage: string;
+  homeHref: string;
+  ctaLabel: string;
+  ctaHref: string;
+  navAriaLabel: string;
+  menuAriaLabel: string;
+};
+
+export type SocialLink = {
+  href: string;
+  ariaLabel: string;
+  iconClass: string;
+};
+
+export type FooterContent = {
+  description: string;
+  companyHeading: string;
+  companyLinks: LinkItem[];
+  contactHeading: string;
+  phone: string;
+  email: string;
+  country: string;
+  newsletterHeading: string;
+  newsletterText: string;
+  newsletterPlaceholder: string;
+  newsletterAriaLabel: string;
+  newsletterButtonLabel: string;
+  socialLinks: SocialLink[];
+};
+
 export const brandName = "PMSWALA";
 
 export const navLinks: NavLink[] = [
@@ -62,6 +164,40 @@ export const navLinks: NavLink[] = [
   { label: "Roadmap", href: "#roadmap", id: "roadmap" },
   { label: "Contact", href: "#contact", id: "contact" }
 ];
+
+export const headerContent: HeaderContent = {
+  logoImage: "/assets/frontend/img/logo/logo.png",
+  homeHref: "#home",
+  ctaLabel: "Invest Now",
+  ctaHref: "https://pmswalaweb.firebaseapp.com/",
+  navAriaLabel: "Main navigation",
+  menuAriaLabel: "Toggle navigation"
+};
+
+export const heroContent: HeroContent = {
+  kicker: "Innovation on Every Charge",
+  title: "Future-ready EV Infrastructure and Investment Intelligence.",
+  description:
+    "We design profitable EV charging growth and investor-grade decision systems for founders, operators, and institutions building the next energy economy.",
+  primaryCta: {
+    label: "View Plans",
+    href: "#plans"
+  },
+  secondaryCta: {
+    label: "Explore Services",
+    href: "#services"
+  },
+  panelImage: "/assets/frontend/img/ui/banner.jpg",
+  panelImageAlt: "EV futuristic visual",
+  panelTitle: "Investor-Grade Command Layer",
+  panelDescription: "Premium insights for EV operations, seized assets, and strategic deployment decisions.",
+  panelTags: ["AI Feasibility", "Risk Control", "Multi-City Ready"]
+};
+
+export const featuresContent: SectionHeadingContent = {
+  kicker: "Platform Features",
+  title: "Built for EV-tech startups and serious investors"
+};
 
 export const heroStats: HeroStat[] = [
   { value: "15K+", label: "Charging Sessions" },
@@ -142,6 +278,20 @@ export const aboutTimeline: AboutTimelineItem[] = [
   }
 ];
 
+export const aboutContent: AboutContent = {
+  title: "From advisory roots to EV-tech execution leadership",
+  description:
+    "We combine startup speed with institutional clarity. The mission is simple: help clients make sharper infrastructure and capital decisions with confidence, transparency, and long-term value.",
+  image: "/assets/frontend/img/about.jpg",
+  imageAlt: "Strategy discussion"
+};
+
+export const servicesContent: ServicesContent = {
+  kicker: "Services",
+  title: "Conversion-focused strategic services",
+  cardCtaLabel: "Discuss Project"
+};
+
 export const plans: Plan[] = [
   {
     name: "Starter",
@@ -168,6 +318,13 @@ export const plans: Plan[] = [
     recommended: false
   }
 ];
+
+export const plansContent: PlansContent = {
+  kicker: "Investment Plans",
+  title: "Premium advisory plans built for growth",
+  recommendedLabel: "Recommended",
+  cardCtaLabel: "Choose Plan"
+};
 
 export const roadmap: RoadmapItem[] = [
   {
@@ -208,6 +365,14 @@ export const roadmap: RoadmapItem[] = [
   }
 ];
 
+export const roadmapContent: RoadmapContent = {
+  kicker: "Roadmap",
+  title: "What we built over the last five years",
+  description:
+    "A clear growth path showing how PMSWALA moved from advisory foundations to a more complete execution, assets, and EV strategy platform.",
+  ariaLabel: "PMSWALA growth path roadmap"
+};
+
 export const testimonials: Testimonial[] = [
   {
     quote: "PMSWALA made our EV expansion look like a high-confidence operating play, not a gamble.",
@@ -225,3 +390,63 @@ export const testimonials: Testimonial[] = [
     role: "CEO, UrbanCharge Network"
   }
 ];
+
+export const testimonialsContent: TestimonialsContent = {
+  kicker: "Testimonials",
+  title: "Trusted by operators and investors",
+  prevLabel: "Previous",
+  nextLabel: "Next"
+};
+
+export const contactContent: ContactContent = {
+  kicker: "Contact",
+  title: "Build your next EV growth chapter",
+  description:
+    "Share your project goals. Our team will design an execution-focused plan for infrastructure and investment outcomes.",
+  mapImage: "/assets/frontend/img/ui/track-illustration1.png",
+  mapImageAlt: "Map visual",
+  nameLabel: "Name",
+  namePlaceholder: "Your full name",
+  emailLabel: "Email",
+  emailPlaceholder: "name@company.com",
+  serviceLabel: "Service Interest",
+  servicePlaceholder: "Select a service",
+  serviceOptions: [
+    { value: "ev", label: "EV Charging Advisory" },
+    { value: "investment", label: "Investment Strategy" },
+    { value: "asset", label: "Seized Asset Intelligence" }
+  ],
+  messageLabel: "Message",
+  messagePlaceholder: "Tell us what you are building",
+  submitLabel: "Send Enquiry",
+  successMessage: "Thank you. Our team will contact you shortly."
+};
+
+export const footerContent: FooterContent = {
+  description: "Premium EV-tech, investment intelligence, and execution advisory for next-generation growth.",
+  companyHeading: "Company",
+  companyLinks: [
+    { label: "About", href: "#about" },
+    { label: "Services", href: "#services" },
+    { label: "Roadmap", href: "#roadmap" },
+    { label: "Terms & Conditions", href: "/terms" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Disclaimer", href: "/disclaimer" },
+    { label: "User Agreement", href: "/user-agreement" },
+    { label: "Contact", href: "#contact" }
+  ],
+  contactHeading: "Contact",
+  phone: "+91 89825 29261",
+  email: "support@pmswala.com",
+  country: "India",
+  newsletterHeading: "Newsletter",
+  newsletterText: "Get EV-tech and investment insights monthly.",
+  newsletterPlaceholder: "Enter email",
+  newsletterAriaLabel: "Email",
+  newsletterButtonLabel: "Subscribe",
+  socialLinks: [
+    { href: "https://www.linkedin.com", ariaLabel: "LinkedIn", iconClass: "bi bi-linkedin" },
+    { href: "https://www.instagram.com", ariaLabel: "Instagram", iconClass: "bi bi-instagram" },
+    { href: "https://www.youtube.com", ariaLabel: "YouTube", iconClass: "bi bi-youtube" }
+  ]
+};

@@ -1,23 +1,21 @@
-import { HeroStat } from "../content";
+import { HeroContent, HeroStat } from "../content";
 
 type HeroSectionProps = {
   heroStats: HeroStat[];
+  heroContent: HeroContent;
 };
 
-export function HeroSection({ heroStats }: HeroSectionProps) {
+export function HeroSection({ heroStats, heroContent }: HeroSectionProps) {
   return (
     <section id="home" className="neo-hero section-reveal">
       <div className="container neo-hero-grid">
         <div className="neo-hero-copy">
-          <p className="neo-kicker">Innovation on Every Charge</p>
-          <h1>Future-ready EV Infrastructure and Investment Intelligence.</h1>
-          <p>
-            We design profitable EV charging growth and investor-grade decision systems for founders,
-            operators, and institutions building the next energy economy.
-          </p>
+          <p className="neo-kicker">{heroContent.kicker}</p>
+          <h1>{heroContent.title}</h1>
+          <p>{heroContent.description}</p>
           <div className="neo-hero-actions">
-            <a href="#plans" className="neo-btn neo-btn-primary">View Plans</a>
-            <a href="#services" className="neo-btn neo-btn-ghost">Explore Services</a>
+            <a href={heroContent.primaryCta.href} className="neo-btn neo-btn-primary">{heroContent.primaryCta.label}</a>
+            <a href={heroContent.secondaryCta.href} className="neo-btn neo-btn-ghost">{heroContent.secondaryCta.label}</a>
           </div>
           <div className="neo-stat-grid">
             {heroStats.map((item) => (
@@ -30,14 +28,14 @@ export function HeroSection({ heroStats }: HeroSectionProps) {
         </div>
 
         <aside className="neo-hero-panel">
-          <img src="/assets/frontend/img/ui/banner.jpg" alt="EV futuristic visual" />
+          <img src={heroContent.panelImage} alt={heroContent.panelImageAlt} />
           <div className="neo-hero-panel-content">
-            <h3>Investor-Grade Command Layer</h3>
-            <p>Premium insights for EV operations, seized assets, and strategic deployment decisions.</p>
+            <h3>{heroContent.panelTitle}</h3>
+            <p>{heroContent.panelDescription}</p>
             <div className="neo-tag-list">
-              <span>AI Feasibility</span>
-              <span>Risk Control</span>
-              <span>Multi-City Ready</span>
+              {heroContent.panelTags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
             </div>
           </div>
         </aside>

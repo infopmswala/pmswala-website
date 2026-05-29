@@ -777,19 +777,97 @@ textarea {
 }
 
 .neo-testimonial-shell {
+  position: relative;
   display: grid;
-  gap: 14px;
-  max-width: 780px;
+  gap: 16px;
+  max-width: 860px;
 }
 
 .neo-testimonial-card {
-  border-radius: 28px;
-  padding: 24px;
+  position: relative;
+  border-radius: 30px;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 88% 14%, rgba(201, 226, 29, 0.2), transparent 33%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.98), rgba(240, 248, 233, 0.92));
+  border: 1px solid rgba(67, 145, 87, 0.22);
+  overflow: hidden;
+}
+
+.neo-testimonial-quote-mark {
+  position: absolute;
+  top: 12px;
+  right: 24px;
+  font-size: 5.4rem;
+  line-height: 1;
+  font-weight: 800;
+  color: rgba(46, 164, 79, 0.16);
+  pointer-events: none;
 }
 
 .neo-testimonial-card p:first-child {
+  position: relative;
+  margin: 0;
+  padding-right: 40px;
   color: #213022;
-  font-size: 1.1rem;
+  font-size: clamp(1.02rem, 1.8vw, 1.26rem);
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+.neo-testimonial-meta {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.neo-testimonial-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #123117;
+  background: linear-gradient(135deg, rgba(46, 164, 79, 0.96), rgba(201, 226, 29, 0.78));
+  box-shadow: 0 10px 20px rgba(46, 164, 79, 0.22);
+}
+
+.neo-testimonial-meta h3 {
+  margin: 0;
+}
+
+.neo-testimonial-meta span {
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.neo-testimonial-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.neo-testimonial-dots button {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0;
+  background: rgba(67, 145, 87, 0.24);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, width 0.2s ease;
+}
+
+.neo-testimonial-dots button:hover {
+  transform: scale(1.12);
+}
+
+.neo-testimonial-dots button.is-active {
+  width: 30px;
+  background: linear-gradient(135deg, var(--green) 0%, var(--lime) 100%);
 }
 
 .neo-testimonial-controls {
@@ -801,11 +879,19 @@ textarea {
 .neo-testimonial-controls button {
   border: 1px solid rgba(67, 145, 87, 0.14);
   border-radius: 999px;
-  min-height: 44px;
-  padding: 0 16px;
+  min-height: 46px;
+  padding: 0 18px;
+  font-weight: 700;
   color: var(--text);
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.92);
   cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.neo-testimonial-controls button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(46, 164, 79, 0.3);
+  box-shadow: 0 10px 20px rgba(46, 164, 79, 0.14);
 }
 
 .neo-contact-grid {
@@ -876,7 +962,7 @@ textarea {
 
 .neo-footer-grid {
   display: grid;
-  grid-template-columns: 1.3fr 0.8fr 0.8fr 1fr;
+  grid-template-columns: 1.35fr 1fr 1fr;
   gap: 18px;
 }
 
@@ -924,6 +1010,162 @@ textarea {
   cursor: pointer;
 }
 
+.neo-legal-page {
+  min-height: 100vh;
+}
+
+.neo-legal-header {
+  padding-top: 54px;
+}
+
+.neo-legal-header h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  letter-spacing: -0.05em;
+  line-height: 1.02;
+}
+
+.neo-legal-header p {
+  max-width: 72ch;
+}
+
+.neo-legal-meta {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  color: #153318;
+  background: linear-gradient(135deg, rgba(46, 164, 79, 0.94), rgba(201, 226, 29, 0.78));
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.neo-agreement-actions {
+  margin-top: 14px;
+}
+
+.neo-agreement-actions .neo-btn {
+  min-height: 42px;
+}
+
+.neo-legal-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.neo-legal-toc,
+.neo-legal-block {
+  border-radius: 26px;
+  padding: 22px;
+  border: 1px solid rgba(67, 145, 87, 0.16);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow);
+}
+
+.neo-legal-toc {
+  position: sticky;
+  top: 104px;
+}
+
+.neo-legal-toc h2,
+.neo-legal-block h2 {
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.neo-legal-toc ol {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.neo-legal-toc a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.neo-legal-toc a:hover {
+  color: var(--green);
+}
+
+.neo-legal-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.neo-legal-block p,
+.neo-legal-block li {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.neo-legal-block ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.neo-legal-block[id] {
+  scroll-margin-top: 110px;
+}
+
+.neo-legal-document {
+  color: var(--muted);
+}
+
+.neo-legal-document p {
+  margin: 0 0 12px;
+  line-height: 1.72;
+}
+
+.neo-legal-document h2,
+.neo-legal-document h3 {
+  margin: 22px 0 10px;
+  color: #152217;
+  letter-spacing: -0.02em;
+}
+
+.neo-legal-document h2 {
+  font-size: 1.1rem;
+}
+
+.neo-legal-document table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 18px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.neo-legal-document td,
+.neo-legal-document th {
+  border: 1px solid rgba(67, 145, 87, 0.18);
+  padding: 10px;
+  vertical-align: top;
+}
+
+.neo-legal-document tr:first-child td,
+.neo-legal-document tr:first-child th {
+  background: rgba(46, 164, 79, 0.08);
+  color: #1a2a1a;
+  font-weight: 700;
+}
+
+.neo-legal-back {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--green);
+  font-weight: 700;
+}
+
 @keyframes neoFadeUp {
   from {
     opacity: 0;
@@ -940,6 +1182,57 @@ textarea {
   animation: neoFadeUp 0.7s ease both;
 }
 
+@media print {
+  .neo-header,
+  .neo-footer,
+  .neo-agreement-actions,
+  .neo-bg-grid,
+  .neo-bg-orb {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .neo-page,
+  .neo-legal-page,
+  .neo-section,
+  .container {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .neo-legal-header {
+    padding-top: 0 !important;
+  }
+
+  .neo-legal-meta {
+    color: #000;
+    background: transparent;
+    border: 1px solid #bbb;
+  }
+
+  .neo-legal-block,
+  .neo-legal-document {
+    box-shadow: none;
+    border: 0;
+    background: transparent;
+    color: #000;
+  }
+
+  .neo-legal-document p,
+  .neo-legal-document h2,
+  .neo-legal-document h3,
+  .neo-legal-document td,
+  .neo-legal-document th {
+    color: #000;
+  }
+}
+
 @media (max-width: 1100px) {
   .neo-hero-grid,
   .neo-about-grid,
@@ -950,6 +1243,14 @@ textarea {
   .neo-service-grid,
   .neo-plan-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .neo-legal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .neo-legal-toc {
+    position: static;
   }
 
   .neo-feature-card:nth-child(1),
@@ -1023,6 +1324,29 @@ textarea {
 
   .neo-plan-card.recommended {
     transform: none;
+  }
+
+  .neo-testimonial-card {
+    padding: 22px;
+  }
+
+  .neo-testimonial-card p:first-child {
+    padding-right: 28px;
+  }
+
+  .neo-testimonial-quote-mark {
+    top: 10px;
+    right: 18px;
+    font-size: 4.3rem;
+  }
+
+  .neo-testimonial-controls {
+    width: 100%;
+  }
+
+  .neo-testimonial-controls button {
+    flex: 1;
+    min-width: 0;
   }
 
   .neo-footer {

@@ -436,8 +436,8 @@ export const footerContent: FooterContent = {
     { label: "Contact", href: "#contact" }
   ],
   contactHeading: "Contact",
-  phone: "+91 89825 29261",
-  email: "support@pmswala.com",
+  phone: "+91 72249 59561",
+  email: "infopmswala@gmail.com",
   country: "India",
   newsletterHeading: "Newsletter",
   newsletterText: "Get EV-tech and investment insights monthly.",

@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property Marketplace | PMSWALA — Buy, Sell &amp; Bank Auction Properties</title>
+<meta name="description" content="Buy residential, commercial, plots, villas and farm houses. Sell as owner, builder or agent. Browse bank auction / bank seized properties with reserve price, auction date, EMD, and documents. Fractional, rental, commercial, land and pre-launch investment opportunities.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="container">
+    <div class="utility-links">
+      <a href="tel:+917224959561">+91 7224959561</a>
+      <a href="mailto:infopmswala@gmail.com">infopmswala@gmail.com</a>
+    </div>
+    <div class="utility-links">
+      <a href="https://pmswalaweb.firebaseapp.com/auth/signIn" target="_blank">Customer Login</a>
+      <a href="contact.html"></a>
+    </div>
+  </div>
+</div>
+<header class="site-nav">
+  <div class="container">
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="PMSWALA logo"><span>PMSWALA</span></a>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="property.html" class="active">Property</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="plans.html">Plans</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-primary btn-sm">Invest Now</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <svg class="hero-facet-bg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><polygon points="100,10 180,60 180,140 100,190 20,140 20,60" fill="#2E8B57"/></svg>
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Property</div>
+    <div class="eyebrow">Property Marketplace</div>
+    <h1>Buy, sell, and invest — including bank seized properties</h1>
+    <p class="lead">One place to browse residential, commercial, and land listings, list your own property for sale, bid on bank auction properties, and explore fractional, rental, commercial, land, and pre-launch investment opportunities — all backed by PMSWALA's legal and valuation diligence.</p>
+  </div>
+</section>
+
+<!-- PROPERTY SEARCH -->
+<!-- <section class="section-tight">
+  <div class="container">
+    <form class="search-bar" id="property-search-form">
+      <div class="field">
+        <label for="ps-location">Location</label>
+        <input type="text" id="ps-location" placeholder="City, locality or pincode">
+      </div>
+      <div class="field">
+        <label for="ps-type">Property Type</label>
+        <select id="ps-type">
+          <option>Residential</option>
+          <option>Commercial</option>
+          <option>Plots &amp; Land</option>
+          <option>Villas</option>
+          <option>Farm Houses</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="ps-purpose">Purpose</label>
+        <select id="ps-purpose">
+          <option>Buy</option>
+          <option>Sell</option>
+          <option>Bank Auction</option>
+          <option>Invest</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="ps-budget">Budget</label>
+        <select id="ps-budget">
+          <option>Under ₹25 Lakh</option>
+          <option>₹25L – ₹50L</option>
+          <option>₹50L – ₹1 Cr</option>
+          <option>₹1 Cr+</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <p class="form-success" id="property-search-result" style="max-width:640px;"></p>
+  </div>
+</section> -->
+
+<!-- BUY PROPERTY -->
+<section class="section section-alt" id="buy-property">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">🏠 Buy Property</div>
+      <h2>Find the right property, in the right category</h2>
+      <p>Every listing category runs through the same feasibility and legal-verification standard the rest of PMSWALA is built on.</p>
+    </div>
+    <div class="grid grid-4">
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-6h6v6"/></svg></div>
+        <h4>Residential</h4>
+        <p>Apartments &amp; independent homes</p>
+      </div>
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2M9 16h2M13 16h2"/></svg></div>
+        <h4>Commercial</h4>
+        <p>Office, retail &amp; warehouse space</p>
+      </div>
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v8l9 5 9-5V8"/></svg></div>
+        <h4>Plots &amp; Land</h4>
+        <p>Ready-to-build residential &amp; commercial plots</p>
+      </div>
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
+        <h4>Villas</h4>
+        <p>Premium standalone villas</p>
+      </div>
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-8 9 8"/><path d="M5 12v8h14v-8"/><path d="M9 20v-5h6v5"/></svg></div>
+        <h4>Farm Houses</h4>
+        <p>Weekend homes on agricultural plots</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELL PROPERTY -->
+<section class="section" id="sell-property">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">🏢 Sell Property</div>
+      <h2>List your property with the right representation</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+        <h4>Owner Listing</h4>
+        <p>List directly as the property owner, no middlemen</p>
+      </div>
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2"/></svg></div>
+        <h4>Builder Listing</h4>
+        <p>Bulk-list new and under-construction projects</p>
+      </div>
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h4>Agent Listing</h4>
+        <p>Verified agents managing listings for clients</p>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top:36px;">
+      <a href="contact.html" class="btn btn-dark">List Your Property</a>
+    </div>
+  </div>
+</section>
+
+<!-- BANK AUCTION / SEIZED PROPERTIES -->
+<section class="section section-ink" id="bank-auction">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="color:var(--lime);">🏦 Bank Auction / Bank Seized Properties</div>
+      <h2 style="color:#fff;">बैंक ऑक्शन में उपलब्ध प्रॉपर्टी</h2>
+      <p style="color:#B9C7BC;">We buy and sell bank-seized properties directly. Every listing below is checked for title, encumbrance, and possession status before it reaches you.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="listing-card reveal">
+        <div class="listing-media"><span class="listing-tag auction">Bank Auction</span>
+          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><polygon points="150,26 250,96 50,96" fill="#9ED14F"/><rect x="70" y="96" width="160" height="104" fill="#fff" opacity=".93"/><rect x="112" y="138" width="34" height="62" fill="#1B4332"/><rect x="160" y="128" width="28" height="28" fill="#2E8B57"/><rect x="198" y="128" width="28" height="28" fill="#2E8B57"/></svg>
+        </div>
+        <div class="listing-body">
+          <h4>3BHK Residential Flat</h4>
+          <div class="listing-price">Reserve Price: ₹42,00,000</div>
+          <div class="listing-meta"><span>1,450 sq.ft</span><span>Indore, MP</span></div>
+          <div class="listing-facts">
+            <div><span>Auction Date</span><b>28 Aug 2026</b></div>
+            <div><span>EMD Details</span><b>₹4,20,000</b></div>
+            <div><span>Property Location</span><b>Vijay Nagar, Indore</b></div>
+            <div><span>Property Documents</span><b>Verified ✓</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="listing-card reveal">
+        <div class="listing-media"><span class="listing-tag auction">Bank Auction</span>
+          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="3" width="14" height="18" transform="scale(10)" fill="none" stroke="#fff" stroke-width="1.2" opacity=".9"/><rect x="60" y="50" width="180" height="130" fill="#fff" opacity=".92"/><rect x="80" y="70" width="30" height="30" fill="#2E8B57"/><rect x="130" y="70" width="30" height="30" fill="#3FA66B"/><rect x="180" y="70" width="30" height="30" fill="#2E8B57"/><rect x="80" y="120" width="130" height="20" fill="#1B4332"/></svg>
+        </div>
+        <div class="listing-body">
+          <h4>Commercial Shop — Ground Floor</h4>
+          <div class="listing-price">Reserve Price: ₹68,50,000</div>
+          <div class="listing-meta"><span>820 sq.ft</span><span>Bhopal, MP</span></div>
+          <div class="listing-facts">
+            <div><span>Auction Date</span><b>12 Sep 2026</b></div>
+            <div><span>EMD Details</span><b>₹6,85,000</b></div>
+            <div><span>Property Location</span><b>MP Nagar, Bhopal</b></div>
+            <div><span>Property Documents</span><b>Verified ✓</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="listing-card reveal">
+        <div class="listing-media"><span class="listing-tag auction">Bank Auction</span>
+          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><circle cx="245" cy="46" r="24" fill="#F4D35E"/><rect x="0" y="150" width="300" height="70" fill="#3FA66B"/><rect x="0" y="128" width="300" height="24" fill="#1F6F63"/><polygon points="10,150 25,120 40,150" fill="#9ED14F"/><polygon points="50,150 65,120 80,150" fill="#7CB342"/><polygon points="90,150 105,120 120,150" fill="#9ED14F"/></svg>
+        </div>
+        <div class="listing-body">
+          <h4>Agricultural Land Parcel</h4>
+          <div class="listing-price">Reserve Price: ₹31,00,000</div>
+          <div class="listing-meta"><span>2.4 acres</span><span>Dewas, MP</span></div>
+          <div class="listing-facts">
+            <div><span>Auction Date</span><b>05 Sep 2026</b></div>
+            <div><span>EMD Details</span><b>₹3,10,000</b></div>
+            <div><span>Property Location</span><b>NH-3, Dewas Road</b></div>
+            <div><span>Property Documents</span><b>Verified ✓</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top:40px;">
+      <a href="contact.html" class="btn btn-primary">Request Full Auction Catalogue</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROPERTIES -->
+<section class="section" id="featured-properties">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">Featured Properties</div>
+      <h2>A sample of live listings on the platform</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="listing-card reveal">
+        <div class="listing-media"><span class="listing-tag">Residential</span>
+          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="90" width="240" height="110" fill="#fff" opacity=".92"/><polygon points="150,30 260,90 40,90" fill="#9ED14F"/><rect x="130" y="140" width="40" height="60" fill="#1B4332"/><rect x="60" y="120" width="30" height="30" fill="#2E8B57"/><rect x="210" y="120" width="30" height="30" fill="#2E8B57"/></svg>
+        </div>
+        <div class="listing-body">
+          <h4>2BHK Apartment, Prime Locality</h4>
+          <div class="listing-price">₹38,00,000</div>
+          <div class="listing-meta"><span>1,050 sq.ft</span><span>Indore, MP</span><span>Owner Listing</span></div>
+        </div>
+      </div>
+      <div class="listing-card reveal">
+        <div class="listing-media"><span class="listing-tag">Villa</span>
+          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect x="40" y="100" width="220" height="100" fill="#fff" opacity=".92"/><polygon points="150,40 240,100 60,100" fill="#7CB342"/><rect x="60" y="130" width="26" height="26" fill="#2E8B57"/><rect x="130" y="140" width="40" height="60" fill="#1B4332"/><rect x="214" y="130" width="26" height="26" fill="#2E8B57"/><circle cx="150" cy="60" r="10" fill="#F4D35E"/></svg>
+        </div>
+        <div class="listing-body">
+          <h4>4BHK Villa with Garden</h4>
+          <div class="listing-price">₹1,45,00,000</div>
+          <div class="listing-meta"><span>3,200 sq.ft</span><span>Bhopal, MP</span><span>Builder Listing</span></div>
+        </div>
+      </div>
+      <div class="listing-card reveal">
+        <div class="listing-media"><span class="listing-tag">Farm House</span>
+          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="150" width="300" height="70" fill="#3FA66B"/><path d="M3 150l9-8 9 8" transform="translate(80,0) scale(3)" fill="none" stroke="#1B4332" stroke-width="2"/><rect x="70" y="150" width="120" height="55" fill="#fff" opacity=".9"/><polygon points="130,110 220,150 40,150" fill="#9ED14F"/></svg>
+        </div>
+        <div class="listing-body">
+          <h4>Farm House on 1.5 Acres</h4>
+          <div class="listing-price">₹72,00,000</div>
+          <div class="listing-meta"><span>1.5 acres</span><span>Dewas, MP</span><span>Agent Listing</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPERTY INVESTMENT -->
+<section class="section section-alt" id="investment">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">💼 Property Investment</div>
+      <h2>Ways to put capital into property, beyond a single purchase</h2>
+    </div>
+    <div class="grid grid-4">
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v10l7 4"/><circle cx="12" cy="12" r="10"/></svg></div>
+        <h4>Fractional Investment</h4>
+        <p>Own a share of a high-value property</p>
+      </div>
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M16 11h.01"/><path d="M2 10h20"/></svg></div>
+        <h4>Rental Income</h4>
+        <p>Buy-to-let opportunities with steady yield</p>
+      </div>
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg></div>
+        <h4>Commercial Investment</h4>
+        <p>Office &amp; retail assets for capital growth</p>
+      </div>
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c9 0 14-5 14-14 0 0-9-1-13 3S3 21 5 21z"/></svg></div>
+        <h4>Land Investment</h4>
+        <p>Appreciating land banks and farmland</p>
+      </div>
+      <div class="prop-cat reveal">
+        <div class="ico-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 3 4 7 2 12l-2 3-2-3c-2-5-1-9 2-12z"/><circle cx="12" cy="9" r="1.5"/></svg></div>
+        <h4>Pre-Launch Projects</h4>
+        <p>Early-stage pricing on upcoming developments</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS: EMI CALCULATOR -->
+<section class="section" id="emi-calculator">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">Home Loan Assistance</div>
+      <h2>EMI Calculator</h2>
+      <p>Get an instant estimate of your monthly instalment before you finalize a property or auction bid.</p>
+    </div>
+    <div class="emi-calc">
+      <div class="emi-inputs">
+        <div class="field">
+          <label for="emi-amount">Loan Amount <span class="range-val" id="emi-amount-val">₹40,00,000</span></label>
+          <input type="range" id="emi-amount" min="500000" max="20000000" step="50000" value="4000000">
+        </div>
+        <div class="field">
+          <label for="emi-rate">Interest Rate <span class="range-val" id="emi-rate-val">8.5%</span></label>
+          <input type="range" id="emi-rate" min="6" max="14" step="0.1" value="8.5">
+        </div>
+        <div class="field">
+          <label for="emi-tenure">Tenure <span class="range-val" id="emi-tenure-val">20 yrs</span></label>
+          <input type="range" id="emi-tenure" min="1" max="30" step="1" value="20">
+        </div>
+      </div>
+      <div class="emi-result">
+        <div class="eyebrow" style="color:#fff;">Monthly EMI</div>
+        <div class="amount" id="emi-monthly">₹0</div>
+        <div class="breakdown">
+          <div>Principal<b id="emi-principal">₹0</b></div>
+          <div>Interest<b id="emi-interest">₹0</b></div>
+          <div>Total Payable<b id="emi-total">₹0</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS: LEGAL / MANAGEMENT / MAP -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">Tools &amp; Services</div>
+      <h2>Everything else you need to close with confidence</h2>
+    </div>
+    <div class="grid grid-3" style="margin-bottom:44px;">
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>Legal Verification</h3>
+        <p>Title, encumbrance, and possession checks run on every property before it's listed or bid on.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-6h6v6"/></svg></div>
+        <h3>Property Management</h3>
+        <p>Tenant sourcing, maintenance coordination, and rent collection for owners who want a hands-off asset.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3>Home Loan Assistance</h3>
+        <p>Bank and NBFC loan facilitation, paperwork support, and rate comparisons for your purchase.</p>
+      </div>
+    </div>
+
+    <!-- <div class="section-head center">
+      <div class="eyebrow">Google Maps Integration</div>
+      <h2>See exactly where a listing sits</h2>
+    </div>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps?q=Indore,Madhya+Pradesh,India&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="PMSWALA property service map"></iframe>
+    </div> -->
+  </div>
+</section>
+
+<!-- SCHEDULE SITE VISIT -->
+<section class="section" id="schedule-visit">
+  <div class="container" style="max-width:640px;">
+    <div class="section-head center">
+      <div class="eyebrow">Schedule Site Visit</div>
+      <h2>Book a walk-through before you decide</h2>
+    </div>
+    <form id="visit-form">
+      <div class="form-row">
+        <div class="field"><label for="v-name">Name</label><input type="text" id="v-name" placeholder="Your full name" required></div>
+        <div class="field"><label for="v-phone">Phone</label><input type="tel" id="v-phone" placeholder="+91" required></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="v-interest">Property Interest</label><input type="text" id="v-interest" placeholder="e.g. 3BHK Vijay Nagar, Indore"></div>
+        <div class="field"><label for="v-date">Preferred Date</label><input type="date" id="v-date"></div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Schedule Visit</button>
+      <div class="form-success" id="visit-success">Thanks — your site visit request has been received. Our team will confirm a time slot shortly.</div>
+    </form>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">Why Choose PMSWALA</div>
+      <h2>Property decisions, backed by the same discipline as our EV and asset work</h2>
+    </div>
+    <div class="grid grid-4">
+      <div class="card reveal"><span class="card-num">01</span><h3>Verified Listings Only</h3><p>Every property, including bank auction listings, passes legal and title verification before it goes live.</p></div>
+      <div class="card reveal"><span class="card-num">02</span><h3>Direct Buy &amp; Sell</h3><p>We transact ourselves where it makes sense, not just refer you elsewhere.</p></div>
+      <div class="card reveal"><span class="card-num">03</span><h3>End-to-End Support</h3><p>Search, loan assistance, legal checks, and possession — handled by one team.</p></div>
+      <div class="card reveal"><span class="card-num">04</span><h3>Transparent Pricing</h3><p>Reserve prices, EMD, and fees are disclosed upfront on every auction listing.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMER REVIEWS -->
+<section class="section section-ink">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="color:var(--lime);">Customer Reviews</div>
+      <h2 style="color:#fff;">What buyers and sellers say</h2>
+    </div>
+    <div class="t-carousel">
+      <div class="testimonial t-slide">
+        <blockquote>"PMSWALA helped us close a bank-auction flat in under three weeks, documents and all."</blockquote>
+        <div class="who"><b>Ankita Sharma</b> — Homebuyer, Indore</div>
+      </div>
+      <div class="testimonial t-slide">
+        <blockquote>"We listed our commercial shop as owners and had verified buyer leads within days."</blockquote>
+        <div class="who"><b>Manish Verma</b> — Property Owner, Bhopal</div>
+      </div>
+      <div class="testimonial t-slide">
+        <blockquote>"The farmland due-diligence process caught a title issue we would have missed ourselves."</blockquote>
+        <div class="who"><b>Priya Deshmukh</b> — Investor, Dewas</div>
+      </div>
+      <div class="t-controls">
+        <button class="t-prev" aria-label="Previous review">←</button>
+        <button class="t-next" aria-label="Next review">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG & MARKET UPDATES -->
+<section class="section" id="blog">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">Blog &amp; Market Updates</div>
+      <h2>Property market notes worth reading</h2>
+    </div>
+    <div class="grid grid-3">
+      <article class="card reveal">
+        <span class="card-num">Market Note</span>
+        <h3>What bank auction reserve prices actually mean</h3>
+        <p>A short guide to reading reserve price, EMD, and auction terms before you bid on a seized property.</p>
+        <p style="margin-top:16px;"><a href="#" class="btn btn-ghost btn-sm">Read More</a></p>
+      </article>
+      <article class="card reveal">
+        <span class="card-num">Market Note</span>
+        <h3>Is farmland still worth it in 2026?</h3>
+        <p>A look at land appreciation trends and what to check before buying agricultural land as an investment.</p>
+        <p style="margin-top:16px;"><a href="#" class="btn btn-ghost btn-sm">Read More</a></p>
+      </article>
+      <article class="card reveal">
+        <span class="card-num">Market Note</span>
+        <h3>Fractional ownership, explained simply</h3>
+        <p>How fractional property investment works, and who it makes sense for.</p>
+        <p style="margin-top:16px;"><a href="#" class="btn btn-ghost btn-sm">Read More</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h2>Ready to buy, sell, or bid?</h2>
+        <p>Talk to our property team about a listing, a bank-auction opportunity, or a farmland investment.</p>
+      </div>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand"><img src="assets/logo.png" alt="PMSWALA logo"><span>PMSWALA</span></a>
+        <p>Premium EV-tech, property, and investment intelligence, and execution advisory for next-generation growth.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="about.html">About</a>
+        <a href="property.html">Property</a>
+        <a href="services.html">Services</a>
+        <a href="roadmap.html">Roadmap</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Privacy Policy</a>
+        
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="tel:+917224959561">+91 7224959561</a>
+        <a href="mailto:infopmswala@gmail.com">infopmswala@gmail.com</a>
+        <a href="contact.html">India</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 PMSWALA. All rights reserved.</span>
+      <span>Innovation on Every Charge</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/917224959561" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.3-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1120.2 12 8.2 8.2 0 0112 20.2z"/></svg>
+</a>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
